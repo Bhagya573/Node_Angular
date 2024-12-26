@@ -1,0 +1,53 @@
+<form [formGroup]="quoteForm" (ngSubmit)="onSubmit()">
+  <label for="quoteName">{{ 'QUOTE_NAME' | translate }}</label>
+  <input type="text" id="quoteName" formControlName="quoteName" required />
+  <div *ngIf="quoteForm.get('quoteName')?.touched && quoteForm.get('quoteName')?.invalid" class="error">
+    <p>{{ 'QUOTE_NAME_REQUIRED' | translate }}</p>
+  </div>
+
+  <label for="customerName">{{ 'CUSTOMER_NAME' | translate }}</label>
+  <input type="text" id="customerName" formControlName="customerName" required />
+  <div *ngIf="quoteForm.get('customerName')?.touched && quoteForm.get('customerName')?.invalid" class="error">
+    <p>{{ 'CUSTOMER_NAME_REQUIRED' | translate }}</p>
+  </div>
+
+  <label for="quoteType">{{ 'QUOTE_TYPE' | translate }}</label>
+  <select formControlName="quoteType" required>
+    <option *ngFor="let type of quoteTypes" [value]="type">{{ type | translate }}</option>
+  </select>
+  <div *ngIf="quoteForm.get('quoteType')?.touched && quoteForm.get('quoteType')?.invalid" class="error">
+    <p>{{ 'QUOTE_TYPE_REQUIRED' | translate }}</p>
+  </div>
+
+  <div *ngIf="quoteForm.get('quoteType')?.value === 'NEW'" style="width:100%">
+    <label for="serialNumber">{{ 'SERIAL_NUMBER' | translate }}</label>
+    <input type="text" id="serialNumber" formControlName="serialNumber" />
+    <div *ngIf="quoteForm.get('serialNumber')?.touched && quoteForm.get('serialNumber')?.invalid" class="error">
+      <p>{{ 'SERIAL_NUMBER_REQUIRED' | translate }}</p>
+    </div>
+
+    <label for="planNumber">{{ 'PLAN_NUMBER' | translate }}</label>
+    <input type="text" id="planNumber" formControlName="planNumber" />
+    <div *ngIf="quoteForm.get('planNumber')?.touched && quoteForm.get('planNumber')?.invalid" class="error">
+      <p>{{ 'PLAN_NUMBER_REQUIRED' | translate }}</p>
+    </div>
+  </div>
+
+  <label for="warrantyTerms">{{ 'WARRANTY_TERMS' | translate }}</label>
+  <select formControlName="warrantyTerms" required>
+    <option *ngFor="let term of warrantyTermsOptions" [value]="term">{{ term }}</option>
+  </select>
+  <div *ngIf="quoteForm.get('warrantyTerms')?.touched && quoteForm.get('warrantyTerms')?.invalid" class="error">
+    <p>{{ 'WARRANTY_TERMS_REQUIRED' | translate }}</p>
+  </div>
+
+  <label for="warrantyHours">{{ 'WARRANTY_HOURS' | translate }}</label>
+  <select formControlName="warrantyHours" required>
+    <option *ngFor="let hour of warrantyHoursOptions" [value]="hour">{{ hour }}</option>
+  </select>
+  <div *ngIf="quoteForm.get('warrantyHours')?.touched && quoteForm.get('warrantyHours')?.invalid" class="error">
+    <p>{{ 'WARRANTY_HOURS_REQUIRED' | translate }}</p>
+  </div>
+
+  <button type="submit">{{ 'CREATE_QUOTE' | translate }}</button>
+</form>

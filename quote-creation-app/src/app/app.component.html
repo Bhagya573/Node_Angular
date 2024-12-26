@@ -1,0 +1,20 @@
+<div>
+  <h1>{{ 'APP_TITLE' | translate }}</h1>
+
+  <!-- English Language Button with Active Class Binding -->
+  <button 
+    (click)="switchLanguage('en')" 
+    [ngClass]="{'active': currentLanguage === 'en'}">
+    English
+  </button>
+
+  <!-- French Language Button with Active Class Binding -->
+  <button 
+    (click)="switchLanguage('fr')" 
+    [ngClass]="{'active': currentLanguage === 'fr'}">
+    Français
+  </button>
+
+  <!-- Router Outlet for Nested Routes -->
+  <router-outlet></router-outlet>
+</div>

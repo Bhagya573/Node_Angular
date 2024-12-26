@@ -1,0 +1,62 @@
+   <div class="search-container">
+    <input 
+      [(ngModel)]="searchQuery" 
+      placeholder="{{ 'SEARCH' | translate }}" 
+      (input)="onSearch()" 
+      class="search-input"
+    />
+  </div>
+  
+  <!-- Table to Display Quotes -->
+  <table class="quotes-table">
+    <thead>
+      <tr>
+        <th>{{ 'QUOTE_NAME' | translate }}</th>
+        <th>{{ 'CUSTOMER_NAME' | translate }}</th>
+        <th>{{ 'QUOTE_TYPE' | translate }}</th>
+        <th>{{'SERIAL_NUMBER' |translate}}</th>
+        <th>{{'PLAN_NUMBER' |translate}}</th>
+        <th>{{ 'WARRANTY_TERMS' | translate }}</th>
+        <th>{{ 'WARRANTY_HOURS' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="quotes.length === 0 && searchQuery.length > 0">
+        <td colspan="7" class="no-quotes-message">
+          {{ 'NO_QUOTES_AVAILABLE' | translate }}
+        </td>
+      </tr>
+      <tr *ngFor="let quote of quotes">
+        <td>{{ quote.quoteName | translate }}</td>
+        <td>{{ quote.customerName | translate}}</td>
+        <td>{{ quote.quoteType | translate }}</td>
+        <td>{{ quote.serialNumber | translate }}</td>
+        <td>{{ quote.planNumber | translate }}</td>
+        <td>{{ quote.warrantyTerms }} {{ 'MONTHS' | translate }}</td>
+        <td>{{ quote.warrantyHours }} {{ 'HOURS' | translate }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button 
+      (click)="onPageChange(currentPage - 1)" 
+      [disabled]="currentPage === 1" 
+      class="pagination-btn"
+    >
+      {{ 'PREVIOUS' | translate }}
+    </button>
+  
+    <!-- Display the page numbers dynamically -->
+    <span class="pagination-info">{{ currentPage }} / {{ totalPages }}</span>
+  
+    <button 
+      (click)="onPageChange(currentPage + 1)" 
+      [disabled]="currentPage === totalPages" 
+      class="pagination-btn"
+    >
+      {{ 'NEXT' | translate }}
+    </button>
+  </div>
+  

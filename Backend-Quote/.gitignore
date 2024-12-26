@@ -1,0 +1,29 @@
+# Node.js
+node_modules/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# Build output
+/dist
+/build
+
+# Temporary files from your IDE (e.g., VSCode, IntelliJ)
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# NPM package-lock file (optional if you prefer to track it)
+package-lock.json
+
+# Test coverage reports
+coverage/
+
+# Misc
+*.tgz
